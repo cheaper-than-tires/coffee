@@ -10,8 +10,14 @@ export async function test(){
 };
 
 const firebaseService = {
-   save : async (feed : FeedType) => {
-      const docRef = await addDoc(collection(firestore, 'feed'), feed);
+   save : async (feed : ReqFeed) => {
+    const request = {
+      ...feed,
+      created_at : Date.now(),
+
+    };
+      
+      const docRef = await addDoc(collection(firestore, 'feed'), request);
       console.log(docRef.id);
    },
 
@@ -25,8 +31,8 @@ const firebaseService = {
 };
 
 const sojutonService = {
-  getAddressFromLocation : (location : LocationType) => {
-    console.log(`location = ${location}`)
+  getAddressFromLocation : (location : CustomLocation) => {
+    return 'asdf';
   }
 };
 
