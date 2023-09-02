@@ -11,15 +11,10 @@ export async function test(){
 
 const firebaseService = {
    save : async (feed : ReqFeed) => {
-    const request = {
-      ...feed,
-      created_at : Date.now(),
-    };
-
-    console.log(request)
-    
+    feed.created_at = Date.now();
+      
     try {
-      const docRef = await addDoc(collection(firestore, 'feed'), request);
+      const docRef = await addDoc(collection(firestore, 'feed'), feed);
       console.log(docRef.id);
 
       return {
