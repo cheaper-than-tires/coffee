@@ -16,23 +16,51 @@ const firebaseService = {
       created_at : Date.now(),
 
     };
-      
+    
+    try {
       const docRef = await addDoc(collection(firestore, 'feed'), request);
       console.log(docRef.id);
+
+      return {
+        success : true,
+        data : docRef.id
+      }
+    } catch (e) {
+      console.error(e);
+      if (e instanceof Error) {
+        return {
+          success: false,
+          message: e.message,
+        }
+      }
+    }
    },
 
    getAll : async () => {
-      const snapshot = await getDocs(collection(firestore, 'feed'));
-      const feeds = snapshot.docs.map(doc=>doc.data());
-      console.log(feeds);
+      try{
+        const snapshot = await getDocs(collection(firestore, 'feed'));
+        const feeds = snapshot.docs.map(doc=>doc.data());
+        console.log(feeds);
 
-      return feeds;
+        return {
+          success : true,
+          data : feeds
+        }
+      }catch (e) {
+        console.error(e);
+        if (e instanceof Error) {
+          return {
+            success: false,
+            message: e.message,
+          }
+        }
+      }
    }
 };
 
 const sojutonService = {
   getAddressFromLocation : (location : CustomLocation) => {
-    return 'asdf';
+    return 'test address nickname';
   }
 };
 
