@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "firebase deploy --only hosting:sojuton-3e551"
   },
   "dependencies": {
     "@emotion/styled": "^11.11.0",
     "@types/node": "20.5.8",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "dotenv": "^16.3.1",
+    "firebase": "^10.3.1",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
