@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { Track } from '@/types/Track';
-import styled from '@emotion/styled';
-import { Column } from '@/components/common/Flex';
+import Content from '@/components/register/Content';
+import Record from '@/components/register/Record';
 
 export default function Register() {
   const [data, setData] = useState<Track>({
@@ -57,43 +57,14 @@ export default function Register() {
         <title>트랙 등록</title>
       </Head>
       <main>
-        <Header>
-          <button
-            onClick={() => {}}
-          >게시</button>
-        </Header>
-        <Container>
-        <input
-          type={'text'}
-          onChange={onChange}
-          name={"content"}
-          value={data.content}
-          placeholder={"소개를 해주세요!"}
-        />
-        <input
-          type={'text'}
-          value={data.address}
-          placeholder={"장소를 입력해주세요"}
-          disabled
-        />
-        <input
-          type={'text'}
-          onChange={onChange}
-          name={"address_nickname"}
-          value={data.address_nickname}
-          placeholder={"장소를 입력해주세요"}
-        />
-        </Container>
+        {data.audio_file_url.length > 0 ?
+          <Content data={data} onChange={onChange} />
+          :
+          <Record
+            onChange={onChange}
+          />
+        }
       </main>
     </>
   )
 }
-
-const Header = styled.header`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const Container = styled(Column)`
-  
-`;
