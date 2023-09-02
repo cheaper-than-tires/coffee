@@ -1,6 +1,8 @@
 import 'dotenv'
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
+import styled from '@emotion/styled';
+import Text from '@/components/common/Text';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +16,47 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Header>
+          <span>지도</span>
+          <span>+</span>
+        </Header>
+        <Content>
+          <Text fontType={'H1'}>아아ㅏ 정말긴 텍스트텍스트</Text>
+          <Sub>
+            <p>01:12</p>
+            <p>광안리 해수욕장</p>
+          </Sub>
+        </Content>
       </main>
     </>
   )
 }
+
+const Sub = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled(Row)`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const Content = styled(Column)`
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+`;

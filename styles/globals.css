@@ -1,12 +1,12 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 * {
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    font-family: Spoqa Han Sans Neo, sans-serif;
 }
 
 body {
@@ -46,4 +46,5 @@ main {
     width: 440px;
     height: 100vh;
     background-color: gray;
+    padding: 36px;
 }
