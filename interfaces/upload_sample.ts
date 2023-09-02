@@ -1,7 +1,7 @@
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import cloudStorage from './cloud_storage'
 
-export async function gcpTest(blob: Blob) {
+export async function uploadAudioFile(blob: Blob) {
   try{
     const storageRef = ref(cloudStorage, 'audio');
     const res = await uploadBytes(storageRef, blob);

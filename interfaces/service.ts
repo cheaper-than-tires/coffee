@@ -14,8 +14,9 @@ const firebaseService = {
     const request = {
       ...feed,
       created_at : Date.now(),
-
     };
+
+    console.log(request)
     
     try {
       const docRef = await addDoc(collection(firestore, 'feed'), request);
