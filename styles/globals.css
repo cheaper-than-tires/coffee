@@ -13,7 +13,8 @@ body {
     background-color: #fafafa;
     color: black;
     width: 100%;
-    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 ul {
@@ -39,4 +40,10 @@ button {
 
 input[type="text"]:focus {
     outline: none;
+}
+
+main {
+    width: 440px;
+    height: 100vh;
+    background-color: gray;
 }
