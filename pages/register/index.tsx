@@ -1,22 +1,23 @@
 import Head from 'next/head';
 import { ChangeEventHandler, useEffect, useState } from 'react';
-import { Track } from '@/types/Track';
 import Content from '@/components/register/Content';
 import Record from '@/components/register/Record';
+import { api } from '@/interfaces/api';
 
 export default function Register() {
-  const [data, setData] = useState<Track>({
+  const [data, setData] = useState<ReqFeed>({
     nickname: '',
     content: '',
-    audio_file_url: '',
     location: {
       lat: 0,
       long: 0,
     },
-    address: '',
     address_nickname: '',
-    created_at: 0,
+    bg_pattern: '',
+    profile_image: 'any string'
   });
+
+  const [file, setFile] = useState<Blob>();
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -32,7 +33,6 @@ export default function Register() {
             lat: pos.coords.latitude,
             long: pos.coords.longitude
           },
-          address: "부산 해운대구 우동"
         })
       },
       () => alert("위치 정보를 가져오는데 실패했습니다."),
@@ -44,9 +44,15 @@ export default function Register() {
     );
   }
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  const post = async (): Promise<void> => {
+    console.log('asdfasdf')
+    await api.saveFeed(data, file!);
+  }
+
+  // useEffect(() => {
+  //   console.log(data)
+  //   console.log(file)
+  // }, [data, file])
 
   useEffect(() => {
     getCurrentPosBtn();
@@ -57,11 +63,15 @@ export default function Register() {
         <title>트랙 등록</title>
       </Head>
       <main>
-        {data.audio_file_url.length > 0 ?
-          <Content data={data} onChange={onChange} />
+        {file ?
+          <Content
+            data={data}
+            onChange={onChange}
+            post={post}
+          />
           :
           <Record
-            onChange={onChange}
+            setFile={setFile}
           />
         }
       </main>

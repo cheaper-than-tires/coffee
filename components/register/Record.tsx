@@ -1,17 +1,12 @@
 import styled from '@emotion/styled';
 import { Row } from '@/components/common/Flex';
-import { ChangeEventHandler, useCallback, useState } from 'react';
 import { AudioRecorder } from 'react-audio-voice-recorder';
 
-export default function Record({ onChange }: {
-  onChange: ChangeEventHandler<HTMLInputElement>
+export default function Record({ setFile }: {
+  setFile: (blob: Blob) => void
 }) {
   const addAudioElement = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement('audio');
-    audio.src = url;
-    audio.controls = true;
-    document.body.appendChild(audio);
+    setFile(blob);
   };
 
   return (

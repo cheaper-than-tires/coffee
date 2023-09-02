@@ -1,17 +1,17 @@
-import { Track } from '@/types/Track';
 import styled from '@emotion/styled';
 import { Column } from '@/components/common/Flex';
 import { ChangeEventHandler } from 'react';
 
-export default function Content({ data, onChange }: {
-  data: Track,
-  onChange: ChangeEventHandler<HTMLInputElement>
+export default function Content({ data, onChange, post }: {
+  data: ReqFeed,
+  onChange: ChangeEventHandler<HTMLInputElement>,
+  post: () => void
 }) {
   return (
     <>
       <Header>
         <button
-          onClick={() => {}}
+          onClick={post}
         >게시
         </button>
       </Header>
@@ -22,12 +22,6 @@ export default function Content({ data, onChange }: {
           name={"content"}
           value={data.content}
           placeholder={"소개를 해주세요!"}
-        />
-        <input
-          type={'text'}
-          value={data.address}
-          placeholder={"장소를 입력해주세요"}
-          disabled
         />
         <input
           type={'text'}
