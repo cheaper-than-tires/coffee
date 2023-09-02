@@ -3,15 +3,26 @@ import { uploadAudioFile } from "./upload_sample";
 
 export const api = {
   saveFeed: async (feed: ReqFeed, file: Blob) => {
-    console.log(feed)
-    console.log(file)
     const address = sojutonService.getAddressFromLocation(feed.location);
     feed.address_nickname ??= address;
+    const fileRes = await uploadAudioFile(file);
+    if (fileRes.success) {
+      console.log('에엥?')
+      const req = {
+        audio_file_url : fileRes.data,
+        created_at : Date.now(),
+        nickname : feed.nickname,
+        content : feed.content,
+        location : feed.location,
+        address_nickname : feed.address_nickname,
+        profile_image : feed.profile_image,
+        bg_pattern : feed.bg_pattern,
+      }
+      await firebaseService.save(req);
+    }
 
-    const result = await firebaseService.save(feed);
-    console.log(result)
-    const result1 = await uploadAudioFile(file);
-    console.log(result1)
+
+
   },
 
   getAllFeed: async () => {
