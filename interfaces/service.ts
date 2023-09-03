@@ -1,24 +1,15 @@
 import firestore from './firestore_config';
+import app from './firebase_config';
 import { setDoc, collection, getDocs, doc, addDoc } from '@firebase/firestore';
-
-export async function test() {
-  // await setDoc(collection(firestore, 'feed'), {
-  //   test: '김연석',
-  // })
-}
 
 const firebaseService = {
   save: async (data : any) => {
     try {
-      console.log('제발');
-      const res = await addDoc(collection(firestore, 'feed'), data);
-      console.log('됫니?');
-      console.log(`됫다~~ ${res}`)
-
-
+      const value = await addDoc(collection(firestore, 'feed'), data);
+  
       return {
         success: true,
-        data: 'dds',
+        data: value.id,
       }
     } catch (e) {
       console.error(e);
@@ -27,6 +18,12 @@ const firebaseService = {
         return {
           success: false,
           message: e.message,
+        }
+      } else {
+        console.log(e);
+        return {
+          success: false,
+          message: e,
         }
       }
     }

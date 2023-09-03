@@ -1,7 +1,6 @@
 {
   "hosting": {
     "public": "public",
-    "site": "sojuton-3e551",
     "ignore": [
       "firebase.json",
       "**/.*",
