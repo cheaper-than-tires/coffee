@@ -3,7 +3,9 @@ import cloudStorage from './cloud_storage'
 
 export async function uploadAudioFile(blob: Blob) {
   try{
-    const storageRef = ref(cloudStorage, 'audio');
+    const name = Math.random();
+    console.log('얼레벌레');
+    const storageRef = ref(cloudStorage, `audio/${name.toString().substring(3)}.webm`);
     const res = await uploadBytes(storageRef, blob);
 
     return {
@@ -16,6 +18,11 @@ export async function uploadAudioFile(blob: Blob) {
       return {
         success: false,
         message: e.message,
+      }
+    } else {
+      return {
+        success: false,
+        message: '왜안돼',
       }
     }
   }

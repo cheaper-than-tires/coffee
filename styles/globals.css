@@ -40,6 +40,7 @@ button {
 
 input[type="text"]:focus {
     outline: none;
+    border: none;
 }
 
 main {

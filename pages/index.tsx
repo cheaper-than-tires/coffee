@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styled from '@emotion/styled';
 import Text from '@/components/common/Text';
+import { Column, Row } from '@/components/common/Flex';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,22 +33,6 @@ export default function Home() {
   )
 }
 
-const Sub = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Header = styled(Row)`
   display: flex;
   flex-direction: row;
@@ -59,4 +44,10 @@ const Content = styled(Column)`
   display: flex;
   flex-direction: column;
   gap: 36px;
+`;
+
+const Sub = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
